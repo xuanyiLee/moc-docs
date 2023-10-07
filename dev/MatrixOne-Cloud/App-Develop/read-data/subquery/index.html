@@ -1,0 +1,1433 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>子查询 - MatrixOne Cloud 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="mo" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://www.matrixorigin.cn" title="MatrixOne Cloud 文档" class="md-header__button md-logo" aria-label="MatrixOne Cloud 文档" data-md-component="logo">
+      
+  <img src="../../../../assets/new-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatrixOne Cloud 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              子查询
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/" hreflang="zh" class="md-select__link">
+                    中文简体
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matrixone-cloud/moc-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../README.md" class="md-tabs__link md-tabs__link--active">
+        MatrixOne
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://www.matrixorigin.cn" title="MatrixOne Cloud 文档" class="md-nav__button md-logo" aria-label="MatrixOne Cloud 文档" data-md-component="logo">
+      
+  <img src="../../../../assets/new-logo.png" alt="logo">
+
+    </a>
+    MatrixOne Cloud 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matrixone-cloud/moc-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          MatrixOne
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MatrixOne" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          MatrixOne
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../README.md" class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2">
+          关于 MatrixOne Cloud
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="关于 MatrixOne Cloud" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          关于 MatrixOne Cloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/matrixonecloud-introduction/" class="md-nav__link">
+        MatrixOne Cloud 简介
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Overview/mysql-compatibility/" class="md-nav__link">
+        MySQL 兼容性
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3">
+          快速开始
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="快速开始" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          快速开始
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Get-Started/quickstart/" class="md-nav__link">
+        快速创建 MatrixOne Cloud（MO Cloud）实例
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4">
+          应用开发
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="应用开发" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          应用开发
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1" type="checkbox" id="__nav_1_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1">
+          连接到 MatrixOne
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="连接到 MatrixOne" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          连接到 MatrixOne
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connect-mo/database-client-tools/" class="md-nav__link">
+        客户端工具连接
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connect-mo/connect-mo-with-web/" class="md-nav__link">
+        使用 Web 页面连接
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_1_3" type="checkbox" id="__nav_1_4_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_1_3">
+          Java 连接
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Java 连接" data-md-level="4">
+        <label class="md-nav__title" for="__nav_1_4_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Java 连接
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connect-mo/java-connect-to-matrixone/connect-mo-with-jdbc/" class="md-nav__link">
+        JDBC 连接
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connect-mo/java-connect-to-matrixone/connect-mo-with-orm/" class="md-nav__link">
+        Java ORMs 连接
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connect-mo/python-connect-to-matrixone/" class="md-nav__link">
+        Python 连接
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connect-mo/connect-to-matrixone-with-go/" class="md-nav__link">
+        Golang 连接
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_2" type="checkbox" id="__nav_1_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_2">
+          数据写入
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数据写入" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          数据写入
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../insert-data/" class="md-nav__link">
+        INSERT 插入
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_3" type="checkbox" id="__nav_1_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_3">
+          数据读取
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数据读取" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          数据读取
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query-data-single-table/" class="md-nav__link">
+        单表读取
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multitable-join-query/" class="md-nav__link">
+        多表连接查询
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          子查询
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        子查询
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    示例
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    开始前准备
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    无关联子查询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    关联子查询
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../views/" class="md-nav__link">
+        视图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cte/" class="md-nav__link">
+        公共表表达式
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4_4" type="checkbox" id="__nav_1_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4_4">
+          应用开发示例
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="应用开发示例" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          应用开发示例
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/develop-java-crud-demo/" class="md-nav__link">
+        Java 基础示例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/springboot-hibernate-crud-demo/" class="md-nav__link">
+        SpringBoot 和 JPA 基础示例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/springboot-mybatis-crud-demo/" class="md-nav__link">
+        SpringBoot 和 MyBatis 基础示例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/develop-python-crud-demo/" class="md-nav__link">
+        Python 基础示例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/sqlalchemy-python-crud-demo/" class="md-nav__link">
+        SQLAlchemy 基础示例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/develop-golang-crud-demo/" class="md-nav__link">
+        Golang 基础示例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/gorm-golang-crud-demo/" class="md-nav__link">
+        Gorm 基础示例
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_5" type="checkbox" id="__nav_1_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_5">
+          管理实例
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="管理实例" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          管理实例
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Instance-Mgmt/create-instance/" class="md-nav__link">
+        创建实例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Instance-Mgmt/connect-instance/" class="md-nav__link">
+        连接实例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Instance-Mgmt/terminate-recovery-instance/" class="md-nav__link">
+        终止和恢复实例
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    示例
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    开始前准备
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    无关联子查询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    关联子查询
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/matrixone-cloud/moc-docs/edit/main/docs/MatrixOne-Cloud/App-Develop/read-data/subquery.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="_1">子查询</h1>
+<p>本篇文档向你介绍 MO Cloud 的子查询功能。</p>
+<h2 id="_2">概述</h2>
+<p>子查询是嵌套在另一个查询中的 SQL 表达式，借助子查询，可以在一个查询当中使用另外一个查询的查询结果。</p>
+<p>通常情况下，从 SQL 语句结构上，子查询语句一般有以下几种形式：</p>
+<ul>
+<li>标量子查询（Scalar Subquery），如 <code>SELECT (SELECT s1 FROM t2) FROM t1</code>。</li>
+<li>派生表（Derived Tables），如 <code>SELECT t1.s1 FROM (SELECT s1 FROM t2) t1</code>。</li>
+<li>存在性测试（Existential Test），如 <code>WHERE NOT EXISTS(SELECT ... FROM t2)</code>，<code>WHERE t1.a IN (SELECT ... FROM t2)</code>。</li>
+<li>集合比较（Quantified Comparison），如 <code>WHERE t1.a = ANY(SELECT ... FROM t2)</code>。</li>
+<li>作为比较运算符操作数的子查询，如 <code>WHERE t1.a &gt; (SELECT ... FROM t2)</code>。</li>
+</ul>
+<p>关于子查询 SQL 语句，参见 <a href="../../Reference/SQL-Reference/Data-Query-Language/subqueries/subquery.md">SUBQUERY</a>。</p>
+<p>另外，从 SQL 语句执行情况上，子查询语句一般有以下两种形式：</p>
+<ul>
+<li>
+<p>关联子查询（Correlated Subquery）：数据库嵌套查询中内层查询和外层查询不相互独立，内层查询也依赖于外层查询。执行顺序为：</p>
+<ul>
+<li>
+<p>先从外层查询中查询中一条记录。</p>
+</li>
+<li>
+<p>再将查询到的记录放到内层查询中符合条件的记录，再放到外层中查询。</p>
+</li>
+<li>
+<p>重复以上步骤</p>
+</li>
+</ul>
+<p>例如：<code>select * from tableA where tableA.cloumn &lt; (select column from tableB where tableA.id = tableB.id))</code></p>
+</li>
+<li>
+<p>无关联子查询 (Self-contained Subquery)：数据库嵌套查询中内层查询是完全独立于外层查询的。执行顺序为：</p>
+<ul>
+<li>先执行内层查询。</li>
+<li>得到内层查询的结果后带入外层，再执行外层查询。</li>
+</ul>
+<p>例如：<code>select * from tableA where tableA.column  = (select tableB.column from tableB )</code></p>
+</li>
+</ul>
+<p><strong>子查询的作用</strong>：</p>
+<ul>
+<li>子查询允许结构化的查询，这样就可以把一个查询语句的每个部分隔开。</li>
+<li>子查询提供了另一种方法来执行有些需要复杂的 <code>JOIN</code> 和 <code>UNION</code> 来实现的操作。</li>
+</ul>
+<p>我们将举一个简单的例子帮助你理解<strong>关联子查询</strong>和<strong>无关联子查询</strong>。</p>
+<h2 id="_3">示例</h2>
+<h3 id="_4">开始前准备</h3>
+<p>你需要确认在开始之前，已经完成了以下任务：</p>
+<ul>
+<li>已完成<a href="../../../Instance-Mgmt/create-instance/">创建实例</a>。</li>
+</ul>
+<h3 id="_5">数据准备</h3>
+<ol>
+<li>
+<p>下载数据集：</p>
+<div class="highlight"><pre><span></span><code>https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/tpch/tpch-1g.zip
+</code></pre></div>
+</li>
+<li>
+<p>创建数据库和数据表：</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">d1</span><span class="p">;</span>
+<span class="n">use</span><span class="w"> </span><span class="n">d1</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">NATION</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">N_NATIONKEY</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">N_NAME</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">N_REGIONKEY</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">N_COMMENT</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">152</span><span class="p">),</span>
+<span class="w">                   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">N_NATIONKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">REGION</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">R_REGIONKEY</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">R_NAME</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">R_COMMENT</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">152</span><span class="p">),</span>
+<span class="w">                   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">R_REGIONKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">PART</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">P_PARTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_NAME</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_MFGR</span><span class="w">        </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_BRAND</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_TYPE</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_SIZE</span><span class="w">        </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_CONTAINER</span><span class="w">   </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_RETAILPRICE</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">P_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">P_PARTKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SUPPLIER</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">S_SUPPKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_NAME</span><span class="w">        </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_ADDRESS</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_NATIONKEY</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_PHONE</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_ACCTBAL</span><span class="w">     </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">S_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">S_SUPPKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">PARTSUPP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">PS_PARTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_SUPPKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_AVAILQTY</span><span class="w">    </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_SUPPLYCOST</span><span class="w">  </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">PS_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">199</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">PS_PARTKEY</span><span class="p">,</span><span class="w"> </span><span class="n">PS_SUPPKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">C_CUSTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_NAME</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_ADDRESS</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_NATIONKEY</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_PHONE</span><span class="w">       </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_ACCTBAL</span><span class="w">     </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">   </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_MKTSEGMENT</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">C_COMMENT</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">117</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">C_CUSTKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ORDERS</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">O_ORDERKEY</span><span class="w">       </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_CUSTKEY</span><span class="w">        </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_ORDERSTATUS</span><span class="w">    </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_TOTALPRICE</span><span class="w">     </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_ORDERDATE</span><span class="w">      </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_ORDERPRIORITY</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_CLERK</span><span class="w">          </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_SHIPPRIORITY</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">O_COMMENT</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">79</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">O_ORDERKEY</span><span class="p">));</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LINEITEM</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">L_ORDERKEY</span><span class="w">    </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_PARTKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SUPPKEY</span><span class="w">     </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_LINENUMBER</span><span class="w">  </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_QUANTITY</span><span class="w">    </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_EXTENDEDPRICE</span><span class="w">  </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_DISCOUNT</span><span class="w">    </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_TAX</span><span class="w">         </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_RETURNFLAG</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_LINESTATUS</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SHIPDATE</span><span class="w">    </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_COMMITDATE</span><span class="w">  </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_RECEIPTDATE</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SHIPINSTRUCT</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_SHIPMODE</span><span class="w">     </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">L_COMMENT</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">44</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">L_ORDERKEY</span><span class="p">,</span><span class="w"> </span><span class="n">L_LINENUMBER</span><span class="p">));</span>
+</code></pre></div>
+</li>
+<li>
+<p>把数据导入到数据表中：</p>
+<div class="highlight"><pre><span></span><code><span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/nation.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">NATION</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/region.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">REGION</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/part.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">PART</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/supplier.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">SUPPLIER</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/partsupp.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">PARTSUPP</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/orders.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">ORDERS</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/customer.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="k">load</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">&#39;/YOUR_TPCH_DATA_PATH/lineitem.tbl&#39;</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">LINEITEM</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"> </span><span class="n">OPTIONALLY</span><span class="w"> </span><span class="n">ENCLOSED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
+<p>现在你可以使用这些数据进行查询。</p>
+<h4 id="_6">无关联子查询</h4>
+<p>对于将子查询作为比较运算符 (<code>&gt;</code>/ <code>&gt;=</code>/ <code>&lt;</code> / <code>&lt;=</code> / <code>=</code> / <code>!=</code>) 操作数的这类无关联子查询而言，内层子查询只需要进行一次查询，MO Cloud 在生成执行计划阶段会将内层子查询改写为常量。</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">p_name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">p_brand</span><span class="o">=</span><span class="s1">&#39;Brand#21&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">p_retailprice</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">1100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">1200</span><span class="p">)</span><span class="w">  </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">partsupp</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">p_partkey</span><span class="o">=</span><span class="n">ps</span><span class="p">.</span><span class="n">ps_partkey</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">p_name</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%pink%&#39;</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</code></pre></div>
+<p>在 MO Cloud 执行上述查询的时候会先执行一次内层子查询：</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">p_brand</span><span class="o">=</span><span class="s1">&#39;Brand#21&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">p_retailprice</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">1100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">1200</span>
+</code></pre></div>
+<p>运行结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">p_name</span><span class="w">                            </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">olive</span><span class="w"> </span><span class="n">chartreuse</span><span class="w"> </span><span class="n">smoke</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">tan</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">olive</span><span class="w"> </span><span class="n">chartreuse</span><span class="w"> </span><span class="n">smoke</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">tan</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">olive</span><span class="w"> </span><span class="n">chartreuse</span><span class="w"> </span><span class="n">smoke</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">tan</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">olive</span><span class="w"> </span><span class="n">chartreuse</span><span class="w"> </span><span class="n">smoke</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">tan</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">sienna</span><span class="w"> </span><span class="n">dark</span><span class="w"> </span><span class="n">bisque</span><span class="w"> </span><span class="n">turquoise</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">sienna</span><span class="w"> </span><span class="n">dark</span><span class="w"> </span><span class="n">bisque</span><span class="w"> </span><span class="n">turquoise</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">sienna</span><span class="w"> </span><span class="n">dark</span><span class="w"> </span><span class="n">bisque</span><span class="w"> </span><span class="n">turquoise</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">sienna</span><span class="w"> </span><span class="n">dark</span><span class="w"> </span><span class="n">bisque</span><span class="w"> </span><span class="n">turquoise</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">honeydew</span><span class="w"> </span><span class="n">orchid</span><span class="w"> </span><span class="n">cyan</span><span class="w"> </span><span class="n">magenta</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">honeydew</span><span class="w"> </span><span class="n">orchid</span><span class="w"> </span><span class="n">cyan</span><span class="w"> </span><span class="n">magenta</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">06</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>对于存在性测试和集合比较两种情况下的无关联列子查询，MO Cloud 会将其进行改写和等价替换以获得更好的执行性能。</p>
+<h4 id="_7">关联子查询</h4>
+<p>对于关联子查询而言，由于内层的子查询引用外层查询的列，子查询需要对外层查询得到的每一行都执行一遍，也就是说假设外层查询得到一千万的结果，那么子查询也会被执行一千万次，这会导致查询需要消耗更多的时间和资源。</p>
+<p>因此在处理过程中，MO Cloud 会尝试对关联子查询去关联，以从执行计划层面上提高查询效率。</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">p_name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">P_PARTKEY</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">PS_PARTKEY</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">PARTSUPP</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">PS_SUPPLYCOST</span><span class="o">&gt;=</span><span class="mi">500</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">p_name</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%pink%&#39;</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</code></pre></div>
+<p>MO Cloud 在处理该 SQL 语句是会将其改写为等价的 <code>JOIN</code> 查询：</p>
+<div class="highlight"><pre><span></span><code>select p_name from part join partsupp on P_PARTKEY=PS_PARTKEY where PS_SUPPLYCOST&gt;=500 and p_name like &#39;%pink%&#39; limit 10;
+</code></pre></div>
+<p>运行结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">p_name</span><span class="w">                             </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">papaya</span><span class="w"> </span><span class="n">red</span><span class="w"> </span><span class="n">almond</span><span class="w"> </span><span class="n">hot</span><span class="w"> </span><span class="n">pink</span><span class="w">         </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">turquoise</span><span class="w"> </span><span class="n">hot</span><span class="w"> </span><span class="n">smoke</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="n">pink</span><span class="w">     </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">purple</span><span class="w"> </span><span class="n">cornsilk</span><span class="w"> </span><span class="n">red</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">floral</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">cyan</span><span class="w"> </span><span class="n">purple</span><span class="w"> </span><span class="n">white</span><span class="w"> </span><span class="n">burnished</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">sandy</span><span class="w"> </span><span class="n">dark</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">indian</span><span class="w"> </span><span class="n">cream</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">powder</span><span class="w"> </span><span class="n">cornsilk</span><span class="w"> </span><span class="n">chiffon</span><span class="w"> </span><span class="n">slate</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">rosy</span><span class="w"> </span><span class="n">light</span><span class="w"> </span><span class="n">black</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">orange</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">white</span><span class="w"> </span><span class="n">goldenrod</span><span class="w"> </span><span class="n">ivory</span><span class="w"> </span><span class="n">steel</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">cornsilk</span><span class="w"> </span><span class="n">dim</span><span class="w"> </span><span class="n">pink</span><span class="w"> </span><span class="n">tan</span><span class="w"> </span><span class="n">sienna</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">lavender</span><span class="w"> </span><span class="n">navajo</span><span class="w"> </span><span class="n">steel</span><span class="w"> </span><span class="n">sandy</span><span class="w"> </span><span class="n">pink</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+</span>
+<span class="mi">10</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">23</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+<p>作为最佳实践，在实际开发当中，为提高计算效率，尽量选择等价计算方法进行查询，避免使用关联子查询的方式进行查询。</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../multitable-join-query/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 多表连接查询" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              多表连接查询
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../views/" class="md-footer__link md-footer__link--next" aria-label="Next: 视图" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              视图
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.copy", "content.action.edit", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.footer"], "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
