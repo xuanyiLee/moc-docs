@@ -1,6 +1,6 @@
 # MatrixOne Cloud：云原生数据平台的未来
 
-MatrixOne Cloud (MO Cloud) 是一个全托管云原生数据平台，它提供了 HSTAP 数据库 MatrixOne (MO) 的云上服务，极大简化了 MO 的部署和运维成本。所提供的 Serverless 实例支持计算资源的自动弹性伸缩以及按 SQL 用量计费，帮助用户不在关注数据库的复杂性，而是应用程序及 SQL 本身。MO Cloud 目前支持在 Amazon Web Services (AWS) 和阿里云上创建数据库实例。
+MatrixOne Cloud (MO Cloud) 是一个全托管云原生数据平台，它提供了 HSTAP 数据库 MatrixOne (MO) 的云上服务，极大简化了 MO 的部署和运维成本。所提供的 Serverless 实例支持计算资源的自动弹性伸缩以及按 SQL 用量计费，帮助用户不再关注数据库的复杂性，而是应用程序及 SQL 本身。MO Cloud 目前支持在 Amazon Web Services (AWS) 和阿里云上创建数据库实例。
 
 ## MatrixOne Cloud 架构
 
